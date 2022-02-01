@@ -1,0 +1,28 @@
+{
+  "name": "sword_health_project",
+  "version": "1.0.0",
+  "description": "Sword Health hiring process project.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon ./src/index.js",
+    "test": "jest src/__tests__"
+  },
+  "author": "Bruno Simas Hadlich",
+  "license": "ISC",
+  "dependencies": {
+    "amqplib": "^0.8.0",
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "logger": "0.0.1",
+    "mysql2": "^2.3.3",
+    "winston": "^3.5.1"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7",
+    "nodemon": "^2.0.15"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}

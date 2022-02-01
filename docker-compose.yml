@@ -1,0 +1,43 @@
+version: "3.0"
+services:
+  api:
+    depends_on:
+      - mysql
+    build: .
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=localuser
+      - MYSQL_PASS=localpass
+      - MYSQL_DB=swordhealth
+      - MYSQL_PORT=3306
+      - EXPRESS_PORT=8080
+    ports: 
+      - 8080:8080
+    stdin_open: true
+    tty: true
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_USER=localuser
+      - MYSQL_PASSWORD=localpass
+      - MYSQL_DATABASE=swordhealth
+      - MYSQL_TCP_PORT=3306
+    volumes:
+      - db:/var/lib/mysql
+      - ${PWD}/mysql/startup_scripts:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+  # rabbitmq:
+  #   image: rabbitmq:3.9
+  #   ports:
+  #       - 5673:5672
+  #       - 15673:15672
+  #   volumes:
+  #       - rabbitmq_data:/var/lib/rabbitmq/
+  #       - rabbitmq_log:/var/log/rabbitmq
+volumes:
+  db:
+  rabbitmq_data:
+  rabbitmq_log:
